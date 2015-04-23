@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require "atd/cli"
+ATD::Cli.start
