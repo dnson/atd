@@ -37,14 +37,14 @@ module ATD
 				require 'atd/commands/idl'
 				ATD::Commands::IDL.new(environment).start
 			end
-			end 
+		end 
 
 
 		private
 		
-		def environment
-	    ATD::Environment.new(options)
-	  end
+			def environment
+		    ATD::Environment.new(options)
+		  end
 	end
 	
 end
