@@ -37,6 +37,31 @@ module ATD
 				require 'atd/commands/idl'
 				ATD::Commands::IDL.new(environment).start
 			end
+		end
+
+		desc 'run_idl_file', 'run file for IDL sMSSS'
+		method_option :host,      aliases: '-h', desc: 'The host of database', type: :string, default: 'localhost'
+		method_option :port,      desc: 'The port of database', type: :numeric, default: 5432
+		method_option :database,      	aliases: '-d', desc: 'The database name, required:true'
+		method_option :username,      	aliases: '-u', desc: 'The database username, required:true'
+		method_option :password,      	aliases: '-p', desc: 'The database password, required:true'
+		method_option :file,      	aliases: '-f', desc: 'The file path, required:true' 
+		method_option :table,      	aliases: '-t', desc: 'The table name in database, required:true', type: :string
+		method_option :seperate,      	aliases: '-s', desc: 'Text delimiter required:true', type: :string, enum: ['comma','space'], default: 'space'
+		
+		method_option :help,      desc: 'Displays the usage'
+
+		def run_idl_file
+			if options[:help] 
+
+				invoke :help, ['run_idl_file']
+			else
+
+				# raise RequiredArgumentMissingError.new("No value provided for required options, run --help for more info") if options[:database].nil? || options[:table].nil? || options[:table].nil?
+      
+				require 'atd/commands/idl'
+				ATD::Commands::IDL.new(environment).run_idl_file
+			end
 		end 
 
 

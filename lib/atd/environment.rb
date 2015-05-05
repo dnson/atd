@@ -65,6 +65,31 @@ module ATD
       @port ||= @options.fetch(:port) {  DEFAULT_PORT }.to_i
     end
 
+    # run idl_file
+
+    def database
+      @database ||= @options.fetch(:database) 
+    end
+    def username
+      @username ||= @options.fetch(:username) 
+    end
+    def password
+      @password ||= @options.fetch(:password) 
+    end
+    def table
+      @table ||= @options.fetch(:table) 
+    end
+    def seperate
+      @seperate ||= @options.fetch(:seperate) 
+    end
+    def file
+      @file ||= @options.fetch(:file) 
+    end
+    # end run_idl_file
+
+
+
+    
     def test
     	@options
     end

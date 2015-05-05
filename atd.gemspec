@@ -20,9 +20,10 @@ Gem::Specification.new do |spec|
   spec.require_paths  = ["lib"]
 
   spec.add_dependency 'lotus-utils',      '~> 0.4'
-  spec.add_dependency 'thor', '~> 0.19'
+  spec.add_dependency 'thor',             '~> 0.19'
   spec.add_dependency 'dotenv',           '~> 1.0'
-  
+  spec.add_dependency 'idata',            '~> 0.2'
+    
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
