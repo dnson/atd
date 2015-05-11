@@ -48,6 +48,7 @@ module ATD
 		method_option :file,      	aliases: '-f', desc: 'The file path, required:true' 
 		method_option :table,      	aliases: '-t', desc: 'The table name in database, required:true', type: :string
 		method_option :seperate,      	aliases: '-s', desc: 'Text delimiter required:true', type: :string, enum: ['comma','space'], default: 'space'
+		method_option :use_config,     desc: 'Use config fiel', type: :boolean, default: false
 		
 		method_option :help,      desc: 'Displays the usage'
 
