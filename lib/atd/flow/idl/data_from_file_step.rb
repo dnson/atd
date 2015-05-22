@@ -1,8 +1,9 @@
 require 'atd/base/step'
+require 'atd/idata/iload'
 require 'pathname'
 module ATD
   module Flow
-    module IDLFlow
+    module IDL
       class DataFromFileStep < ATD::Base::Step
         def initialize(environment)
           @environment = environment
@@ -11,10 +12,13 @@ module ATD
           Dir.foreach(@environment.idl_path) do |item|
             next if item == '.' or item =='..'
             path = Pathname.new(@environment.idl_path).join(item)
-            options = {:table => item, :file =>path }
+            table = path.basename.sub_ext('')
+            table = table.to_s << "_temp"
+            extname = path.extname
+            extname.sub! '.', ''
+            options = {:table => table, :file =>path, :ext => extname }
             options =@environment.to_iload_options.merge options
-            ATD::Commands::ILoad.new(options).run
-            puts options.fetch(:file)
+            ATD::IData::ILoad.new(options).run
           end
         end
       end

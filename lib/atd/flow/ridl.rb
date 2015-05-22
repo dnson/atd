@@ -1,18 +1,15 @@
-require 'atd/base/use_case'
 require 'atd/flow/base'
 
 module ATD
   module Flow
-    class IDL < Base
-      include ATD::Base::UseCase
+    class RIDL < Base
 
       def initialize(environment)
         @environment = environment
       end
-      def perform
+      def run
         require_all 'idl'
-        ATD::Flow::IDLFlow::DataFromFileStep.new(@environment).run
-
+        ATD::Flow::IDL::DataFromFileStep.new(@environment).run
       end
     end
   end

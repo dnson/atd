@@ -29,7 +29,9 @@ module ATD
     def path_file
       config.join(DEFAULT_DOTENV)
     end
-
+    def show_log
+      @show_log ||= @options.fetch(:show_log)
+    end
     def read
       if exist?
         options_env = Dotenv.load path_file
@@ -112,7 +114,8 @@ module ATD
         password: password,
         database: database,
         file: file,
-        table: table
+        table: table,
+        show_log: show_log
       )
     end
   end
