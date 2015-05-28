@@ -1,13 +1,19 @@
 require "atd/base/step"
 module ATD
   module IData
-    class Sanitize < Step
+    class Sanitize < ATD::Base::Step
       def initialize(options={})
         @options = options
+        @options[:remove] =  []
       end
       def run
-        file = options.fetch(:file);
-
+        begin
+          file = @to_iload_options.fetch(:file);
+          sanitize(file)
+          log("File #{file} has sanitized")
+         rescue Exception => ex
+          log(ex.message, @show_log)
+        end
       end
       def sanitize(file)
 	      s = IO.read(file)

@@ -6,10 +6,14 @@ module ATD
 
       def initialize(environment)
         @environment = environment
+        @show_log = environment.show_log
       end
       def run
         require_all 'idl'
-        ATD::Flow::IDL::DataFromFileStep.new(@environment).run
+        base = ATD::Flow::IDL
+        base::SanitizeStep.new(@environment).perform
+        base::DataFromFileStep.new(@environment).perform
+        base::LoadCountryStep.new(@environment).perform
       end
     end
   end
