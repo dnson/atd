@@ -11,8 +11,8 @@ module ATD
       def run
         require_all 'idl'
         base = ATD::Flow::IDL
-        base::SanitizeStep.new(@environment).perform
-        base::DataFromFileStep.new(@environment).perform
+       # base::SanitizeStep.new(@environment).perform
+      #  base::DataFromFileStep.new(@environment).perform
         base::LoadCountryStep.new(@environment).perform
       end
     end

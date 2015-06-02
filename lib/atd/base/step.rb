@@ -1,10 +1,12 @@
 require "atd/logger"
 require "atd/base/use_case"
+require "atd/base/itransaction"
 module ATD
   module Base
     class Step
       attr_reader :errors, :result
       include ATD::Base::UseCase
+      include ATD::Base::ITransaction
       def initialize
         @errors = []
         @result = []
@@ -22,24 +24,23 @@ module ATD
         Lotus::Logger.new(class_name).info(msg) if show
       end
       def prepare
-        log("Entrance",@show_log)
-      end
-      def before_run
+        return true
       end
       def run
         raise NotImplementedError
       end
-      def after_run
-      end
       def quit
-        log("Quit",@show_log)
+        return true
       end
       def perform
+        log("Entrance",@show_log)
         prepare
-        before_run
-        run
-        after_run
-        quit
+        if prepare && run && quit
+          commit
+        else
+          rollback
+        end
+        log("Quit",@show_log)
       end
 
 

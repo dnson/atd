@@ -14,11 +14,7 @@ module ATD
 				# puts log if showlog
       end
       def self.execute(host,port,username, password,file,database)
-        puts host
-        puts port
-        file = "/home/pc270/Dropbox/projects/research/ruby/atd/config/script/2_load_vendors.sql"
         system("psql","-h",host,"-U","postgres","-d",database,"-a","-w","-f",file)
-
       end
 
 		end
